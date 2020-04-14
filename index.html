@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Guess the lyrics!</title>
+</head>
+<body>
+    <div id="app" class="container mt-3">
+        <p class="lead" v-if="loading">Loading...</p>
+        <div class="row" v-else>
+            <div class="col-4">
+                <input v-model="input_box" class="form-control form-control-lg" type="text" placeholder="Enter guesses">
+            </div>
+            <div class="col-4 h3">
+               {{ num_found_words }} / {{ total_count }}
+            </div>
+        </div>
+        <!-- {{ found_words }} -->
+        <table v-if="lyrics" class="table table-sm table-bordered mt-2">
+            <tr v-for="i in words_per_column">
+                <td v-for="j in columns" class="py-0 text-center" style="font-size: 0.8rem;" width="12.5%">
+                    {{ found_words.includes(raw_lyrics[i + words_per_column*(j-1) - 1]) ? lyrics_arr[i + words_per_column*(j-1) - 1] : '&nbsp'}}
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
