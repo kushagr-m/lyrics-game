@@ -14,24 +14,28 @@
     <title>Guess the lyrics!</title>
 </head>
 <body>
-    <div id="app" class="container mt-3">
+
+    <div id="app" class="container">
         <p class="lead" v-if="loading">Loading...</p>
-        <div class="row" v-else>
-            <div class="col-4">
-                <input v-model="input_box" class="form-control form-control-lg" type="text" placeholder="Enter guesses">
+
+
+            <div class="row jumbotron mt-3 p-2 sticky-top" v-else>
+                <div class="col-4 px-0">
+                    <input v-model="input_box" class="form-control form-control-lg" type="text" placeholder="Enter guesses">
+                </div>
+                <div class="col p lead my-auto">Guess the song lyrics!</div>
+                <div class="col h3 text-right my-auto">
+                {{ num_found_words }} / {{ total_count }}
+                </div>
             </div>
-            <div class="col-4 h3">
-               {{ num_found_words }} / {{ total_count }}
-            </div>
-        </div>
-        <!-- {{ found_words }} -->
-        <table v-if="lyrics" class="table table-sm table-bordered mt-2">
-            <tr v-for="i in words_per_column">
-                <td v-for="j in columns" class="py-0 text-center" style="font-size: 0.8rem;" width="12.5%">
-                    {{ found_words.includes(raw_lyrics[i + words_per_column*(j-1) - 1]) ? lyrics_arr[i + words_per_column*(j-1) - 1] : '&nbsp'}}
-                </td>
-            </tr>
-        </table>
+
+            <table v-if="lyrics" class="table table-sm mt-2">
+                <tr v-for="i in words_per_column">
+                    <td v-for="j in columns" class="py-0 text-center" style="font-size: 0.8rem;" width="12.5%" v-bind:style="{ border: (i + words_per_column*(j-1)) <= total_count ? '1px solid grey' : 'none'}">
+                        {{ found_words.includes(raw_lyrics[i + words_per_column*(j-1) - 1]) ? lyrics_arr[i + words_per_column*(j-1) - 1] : '&nbsp'}}
+                    </td>
+                </tr>
+            </table>
 
     </div>
 

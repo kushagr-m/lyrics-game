@@ -9,7 +9,8 @@ var app = new Vue({
         lyrics: '',
         input_box: '',
         columns: 8,
-        found_words: []
+        found_words: [],
+        game_state: 0, // 0 = playing, 1 = loss, 2 = win
     },
     computed: {
         total_count: function() {
