@@ -6,3 +6,6 @@ No copyright infringment intended.
 * Copy the path eg `/lyrics/gorillaz/feelgoodinc.html`
 * Encode the path to base64
 * Use `index.html?path=`(your encode)
+
+Proof of concept available in branch `python-proof`.
+
